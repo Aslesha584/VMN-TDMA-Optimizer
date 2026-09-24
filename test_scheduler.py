@@ -16,9 +16,17 @@ def test_scheduler():
         "Node_05": [800, 300]
     }
 
-    network = build_network_graph(coordinates)
-    conflicts = build_conflict_graph(network)
-    schedule = create_schedule(conflicts)
+    network = build_network_graph(
+        coordinates
+    )
+
+    conflicts = build_conflict_graph(
+        network
+    )
+
+    schedule, strategy = create_schedule(
+        conflicts
+    )
 
     valid, node_a, node_b = verify_schedule(
         conflicts,
@@ -29,9 +37,22 @@ def test_scheduler():
 
     print("TEST PASSED")
     print("Nodes:", len(coordinates))
-    print("Communication Links:", len(network.edges))
-    print("Conflict Links:", len(conflicts.edges))
-    print("Slots:", max(schedule.values()) + 1)
+    print(
+        "Communication Links:",
+        len(network.edges)
+    )
+    print(
+        "Conflict Links:",
+        len(conflicts.edges)
+    )
+    print(
+        "Slots:",
+        max(schedule.values()) + 1
+    )
+    print(
+        "Strategy:",
+        strategy
+    )
 
 
 if __name__ == "__main__":
